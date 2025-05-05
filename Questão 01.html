@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedido de Açaí</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      margin-top: 40px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      color: #5c2d91;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #5c2d91;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7c4dff;
+    }
+
+    #resumo {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #f9f3ff;
+      border-left: 5px solid #5c2d91;
+      display: none;
+    }
+
+    #resumo h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Escolha o tipo de açaí:</h2>
+    <label><input type="radio" name="acai" value="Puro"> Puro</label>
+    <label><input type="radio" name="acai" value="Doce"> Doce</label>
+    <label><input type="radio" name="acai" value="Refinado"> Refinado</label>
+
+    <h2>Escolha as misturas:</h2>
+    <label><input type="checkbox" value="Banana"> Banana</label>
+    <label><input type="checkbox" value="Morango"> Morango</label>
+    <label><input type="checkbox" value="Leite condensado"> Leite condensado</label>
+    <label><input type="checkbox" value="Granola"> Granola</label>
+    <label><input type="checkbox" value="Mel"> Mel</label>
+    <label><input type="checkbox" value="Paçoca"> Paçoca</label>
+    <label><input type="checkbox" value="Leite em pó"> Leite em pó</label>
+    <label><input type="checkbox" value="Chocolate"> Chocolate</label>
+
+    <button onclick="mostrarResumo()">Próximo</button>
+
+    <div id="resumo">
+      <h3>Resumo do Pedido:</h3>
+      <p id="tipoSelecionado"></p>
+      <p id="misturasSelecionadas"></p>
+    </div>
+  </div>
+
+  <script>
+    function mostrarResumo() {
+      const tipo = document.querySelector('input[name="acai"]:checked');
+      const tipoSelecionado = tipo ? tipo.value : "Nenhum tipo selecionado";
+
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+      const misturas = Array.from(checkboxes).map(cb => cb.value);
+      const misturasSelecionadas = misturas.length > 0 ? misturas.join(", ") : "Nenhuma mistura selecionada";
+
+      document.getElementById("tipoSelecionado").textContent = "Tipo de Açaí: " + tipoSelecionado;
+      document.getElementById("misturasSelecionadas").textContent = "Misturas: " + misturasSelecionadas;
+      document.getElementById("resumo").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
